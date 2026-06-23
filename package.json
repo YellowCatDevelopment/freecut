@@ -27,7 +27,7 @@
     "check": "vp check --no-fmt src vite.config.ts",
     "check:fix": "vp check src vite.config.ts package.json .oxlintrc.json .oxfmtrc.json --fix",
     "verify": "vp run check && vp run check:boundaries && vp run check:deps-contracts && vp run check:legacy-lib-imports && vp run check:deps-wrapper-health && vp run check:unused-exports && vp run check:unused-class-members && vp run check:changed-health && vp run check:edge-budgets && vp test run && vp build",
-    "preview": "vp preview",
+    "preview": "npm run build && wrangler dev",
     "preview:perf": "vp preview --host --strictPort --port 4173",
     "perf": "vp run build:perf && vp run preview:perf",
     "routes": "tsr generate",
@@ -42,7 +42,8 @@
     "headless:test": "node headless/test.mjs",
     "changelog:append": "node scripts/changelog-append.mjs",
     "changelog:rollup": "node scripts/changelog-rollup.mjs",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
@@ -110,7 +111,8 @@
     "playwright": "^1.60.0",
     "tailwindcss": "4.2.2",
     "typescript": "5.9.3",
-    "vite-plus": "0.1.19"
+    "vite-plus": "0.1.19",
+    "wrangler": "^4.104.0"
   },
   "packageManager": "npm@11.8.0"
 }
